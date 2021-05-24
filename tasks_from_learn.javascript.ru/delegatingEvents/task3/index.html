@@ -1,0 +1,104 @@
+<!-- https://learn.javascript.ru/task/sortable-table -->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Возраст</th>
+        <th data-type="string">Имя</th>
+        <th data-type="string">Имя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>234</td>
+        <td>Yaroslav</td>
+        <td>Denis</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Вася</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Петя</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Женя</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Маша</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Илья</td>
+        <td>Вася</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    grid.addEventListener('click', (e)=> {
+        if(e.target.tagName !== 'TH') return   // если клик не по тегу ТН выходим
+        let tarIndex = e.target.cellIndex      // номер столбца по которому был клик
+        let td = grid.querySelectorAll('td')   // получить все столбцы из таблицы 
+        let tdItems = new Array()
+        for (const el of td) {                 // записать данные только из того столбца таблицы по кот. был клик в заголовке
+          if(el.cellIndex == tarIndex) {       // в массив 
+              tdItems.push(el.textContent)
+          }    
+        }
+        // sorting
+        if(e.target.dataset.type = 'string')   // сортировка сохраненных данных в массиве, из столбца таблицы по кот. был клик
+          tdItems.sort()
+        if(e.target.dataset.type = 'number') {
+          tdItems.sort((a, b) => {
+            if(Number(a) > Number(b))
+                return 1
+            if(Number(a) < Number(b))
+                return -1
+            if(Number(a) == Number(b))
+                return 0    
+          })
+        }
+        // // sorting
+        let i = 0;                            // вставка отсортированных данных в столбец по кот. был клик
+        for (const el of td) {
+          if(el.cellIndex == tarIndex) {
+              el.textContent = tdItems[i]
+              i++
+          }
+        }
+    })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Accum (start) {
+            this.value = start;
+            this.read = function () {
+                this.value += Number(prompt('Input digit'));
+            }
+        }
+        let accum = new Accum(2);
+        accum.read();
+        // console.log('undefined + 2 = ',undefined + 2);
+        console.log(accum.value);
+    </script>
+</body>
+</html>
+<!-- 
+https://learn.javascript.ru/constructor-new#sozdayom-accumulator
+// Создаём Accumulator
+// важность: 5
+// Напишите функцию-конструктор Accumulator(startingValue).
+
+// Объект, который она создаёт, должен уметь следующее:
+
+// Хранить «текущее значение» в свойстве value. Начальное значение устанавливается в аргументе конструктора startingValue.
+// Метод read() использует prompt для получения числа и прибавляет его к свойству value.
+// Таким образом, свойство value является текущей суммой всего, что ввёл пользователь при вызовах метода read(), с учётом начального значения startingValue.
+
+// Ниже вы можете посмотреть работу кода:
+
+// let accumulator = new Accumulator(1); // начальное значение 1
+
+// accumulator.read(); // прибавит ввод prompt к текущему значению
+// accumulator.read(); // прибавит ввод prompt к текущему значению
+
+// alert(accumulator.value); // выведет сумму этих значений -->

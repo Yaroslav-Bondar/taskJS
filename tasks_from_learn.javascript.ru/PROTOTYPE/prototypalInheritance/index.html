@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello I am test</h1>
+<script>
+function Cat() {}
+
+Cat.prototype.sayMeow = () => {
+    console.log('Meow!   Meow!   Meow!')
+    return 'Meow!   Meow!   Meow!';
+};
+
+Cat.prototype.getPet = () => {
+    return 'Purrrrrr';
+};
+let cat = new Cat
+
+// console.log(typeof Cat)
+function Leopard() {
+    // __proto__ = Cat
+}
+// Leopard.__proto__ = Cat
+let leo = new Leopard()
+// leo.__proto__ = cat
+// leo.sayMeow = function () {
+//     console.log('Roar!')
+//     return 'Roar!';
+// }
+console.log(leo.__proto__)
+debugger
+// leo.sayMeow()
+</script>
+</body>
+</html>
