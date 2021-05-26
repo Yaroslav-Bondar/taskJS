@@ -1,3 +1,19 @@
+<!-- https://gist.github.com/codedokode/ce30e7a036f18f416ae0#2-%D0%BF%D0%BE%D0%BB%D0%B5 -->
+<!-- 2. Поле
+Сделай поле из белых клеточек (клеточка может иметь размер около 28×28 пикселей). При клике на клеточку она должна менять цвет на черный. Под таблицей должна быть кнопка «поменять цвета». При ее нажатии все цвета клеточек меняются на противоположные.
+
+Делать поле удобно с помощью элемента <table>. Саму таблицу надо не вставить в исходный код, а сгенерировать и добавить в DOM страницы яваскриптом.
+
+У тебя может возникнуть желание поставить обработчик события на каждую клеточку. Не делай так, это неэффективно, достаточно одного обработчика на всю таблицу (так как события всплывают от элемента вверх по дереву DOM и можно ловить все события одним обработиком на таблице).
+
+Чтобы поменять цвета всех клеточек сразу, необязательно обходить их в цикле. Если помечать нажатые клетки определенным классом, то перекрасить их все одновременно можно, поменяв класс на самой таблице.
+
+Ты можешь заметить, что событие click срабатывает после отпускания левой кнопки мыши, а mousedown — при нажатии (любой) и с ним получается ощущение более быстрого отклика.
+
+Ты можешь заметить, что, если быстро кликать по клеткам, браузер пытается выделять ячейки таблицы, и выглядит это некрасиво. Если это так, то надо средствами CSS3 сделать таблицу невыделяемой.
+
+Информация по событиям: http://learn.javascript.ru/events -->
+
 <!DOCTYPE HTML>
 <html>
 
@@ -17,11 +33,28 @@
      th:hover {
        background: yellow;
      }
+    #mytable {
+      margin: 0 auto;
+    } 
+    td {
+      height: 35px;
+      width: 35px;
+      box-sizing: border-box;
+      border: 2px solid green;
+      background: burlywood;
+    }
+    .change td {
+      background: brown;
+    }
+    .change-color {
+      background: brown;
+    }
+    .change .change-color {
+      background: burlywood;
+    }
   </style>
 </head>
-
 <body>
-
   <table id="grid">
     <thead>
       <tr>
@@ -52,20 +85,47 @@
       </tr>
     </tbody>
   </table>
-
-  <script>
-   grid.addEventListener('click', (e)=> {
-	console.dir(e.target)
-   })	
+<script>
 	let body = document.querySelector('body')
 	let table = document.createElement('table')
+  table.id = 'mytable'
 	let tbody = document.createElement('tbody')
-	let tr = document.createElement('tr')
 	body.append(table)
 	table.append(tbody)
-	console.log(table)	
-   	
-  </script>
-
+  let div = document.createElement('div')
+  div.style.textAlign = 'center'
+  div.style.marginTop = '30px'
+  let btn = document.createElement('button')
+  btn.innerHTML = 'change colors'
+  // make tr - rows
+  for (let i = 0; i < 4; i++) {                 
+    let tr = document.createElement('tr')
+    tbody.append(tr)
+  }
+  // make td - columns
+  let trs = table.querySelectorAll('tr')
+  for (const tr of trs) {
+    for (let i = 0; i < 4; i++) {
+      let td = document.createElement('td')
+      tr.append(td);
+    }    
+  }
+  // insert button
+  table.after(div)
+  div.append(btn)
+  btn.addEventListener('click', changeColors)
+  // // insert button
+  mytable.addEventListener('click', makeColor)
+  // colors for td
+  function makeColor (e) {
+    let td = e.target.closest('td')
+    if(!td) return
+    td.classList.toggle('change-color')
+  }
+  // reverse colors
+  function changeColors() {
+    table.classList.toggle('change')
+  }
+</script>
 </body>
 </html>
