@@ -1,0 +1,81 @@
+<!--task
+https://learn.javascript.ru/task/behavior-tooltip
+    theory
+https://learn.javascript.ru/event-delegation
+https://learn.javascript.ru/mouse-events-basics
+https://learn.javascript.ru/coordinates-document
+https://developer.mozilla.org/ru/docs/Web/API/Element/getBoundingClientRect -->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* добавим body прокрутку, подсказка должна работать и с прокруткой */
+    }
+
+    .tooltip {
+      /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
+      /* position: fixed; */
+      position: absolute;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+    button[data-tooltip] {
+      /* margin: 2px; */
+    }
+  </style>
+</head>
+
+<body id="body">
+
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+  <button data-tooltip="эта подсказка должна быть длиннее, чем элемент">Короткая кнопка</button>
+  <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+  <p>Прокрутите страницу, чтобы кнопки оказались у верхнего края, а затем проверьте правильно ли выводятся подсказки.</p>
+
+
+  <script>
+    body.addEventListener('mouseover', (e)=> {
+      let btnText = e.target.dataset.tooltip   // buttons with the need data  
+      if (btnText === undefined) return
+      btn = e.target
+      coordBtn = btn.getBoundingClientRect()
+      // create prompt
+      let prompt = document.createElement('div')
+      prompt.innerHTML = btnText
+      btn.insertAdjacentElement('afterend', prompt)
+      prompt.className = 'tooltip'
+      // pageYOffset - величина вертикального скролла страницы, добавляем в координату вертикального расположения
+      prompt.style.top = (coordBtn.top - pageYOffset - prompt.offsetHeight - 5) + 'px'
+      prompt.style.left = coordBtn.left + pageXOffset + 'px'  
+      // подсказки для того чтобы она оставалась в нужной позиции если был вертикальный скролл  
+
+      if (prompt.offsetTop - pageYOffset < 0) {
+        // pageYOffset - величина вертикального скролла страницы, добавляем в координату вертикального расположения
+        prompt.style.top = coordBtn.top + pageYOffset + coordBtn.height + 5 + 'px'  
+        // подсказки для того чтобы она оставалась в нужной позиции если был вертикальный скролл  
+        prompt.style.left = coordBtn.left + pageXOffset + 'px'
+      }
+    })
+    body.addEventListener('mouseout', (e)=> {
+      let btn = e.target.dataset.tooltip
+      if(!btn) return
+      document.querySelector('.tooltip').remove()
+      // console.log('opp...')
+    })
+  </script>
+
+</body>
+</html>
