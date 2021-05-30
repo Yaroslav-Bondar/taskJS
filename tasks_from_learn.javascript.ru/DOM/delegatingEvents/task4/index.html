@@ -47,32 +47,40 @@ https://developer.mozilla.org/ru/docs/Web/API/Element/getBoundingClientRect -->
 
 
   <script>
+    let prompt
     body.addEventListener('mouseover', (e)=> {
-      let btnText = e.target.dataset.tooltip   // buttons with the need data  
-      if (btnText === undefined) return
+      let btn = e.target.dataset.tooltip   // buttons with the need data  
+      if (!btn) return
       btn = e.target
       coordBtn = btn.getBoundingClientRect()
       // create prompt
-      let prompt = document.createElement('div')
-      prompt.innerHTML = btnText
+      prompt = document.createElement('div')
+      prompt.innerHTML = btn.dataset.tooltip
       btn.insertAdjacentElement('afterend', prompt)
       prompt.className = 'tooltip'
       // pageYOffset - величина вертикального скролла страницы, добавляем в координату вертикального расположения
       prompt.style.top = (coordBtn.top - pageYOffset - prompt.offsetHeight - 5) + 'px'
-      prompt.style.left = coordBtn.left + pageXOffset + 'px'  
+      // prompt.style.left = coordBtn.left + pageXOffset + 'px'  
       // подсказки для того чтобы она оставалась в нужной позиции если был вертикальный скролл  
-
       if (prompt.offsetTop - pageYOffset < 0) {
         // pageYOffset - величина вертикального скролла страницы, добавляем в координату вертикального расположения
         prompt.style.top = coordBtn.top + pageYOffset + coordBtn.height + 5 + 'px'  
         // подсказки для того чтобы она оставалась в нужной позиции если был вертикальный скролл  
-        prompt.style.left = coordBtn.left + pageXOffset + 'px'
+        // prompt.style.left = coordBtn.left + pageXOffset + 'px'
       }
+      // console.log(btn.offsetLeft, coordBtn.left)
+      let promptLeft = btn.offsetLeft + (btn.offsetWidth - prompt.offsetWidth) / 2;
+      if (promptLeft < 0) promptLeft = 0; // не заезжать за левый край окна
+      prompt.style.left = promptLeft + 'px'
     })
     body.addEventListener('mouseout', (e)=> {
-      let btn = e.target.dataset.tooltip
-      if(!btn) return
-      document.querySelector('.tooltip').remove()
+      // let btn = e.target.dataset.tooltip
+      // if(!btn) return
+      // document.querySelector('.tooltip').remove()
+      if(prompt) {
+        prompt.remove()
+        prompt = null
+      }
       // console.log('opp...')
     })
   </script>
