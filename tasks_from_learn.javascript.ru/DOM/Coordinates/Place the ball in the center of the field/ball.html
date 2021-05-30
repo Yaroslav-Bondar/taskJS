@@ -1,0 +1,45 @@
+<!-- https://learn.javascript.ru/task/put-ball-in-center -->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #field {
+      width: 400px;
+      height: 500px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+    }
+
+    #ball {
+      /* position: absolute; */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="field">
+      <div class="ball__wrap">
+        <img src="https://en.js.cx/clipart/ball.svg" id="ball">
+      </div> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+<script>
+    let ballWrap = document.querySelector('.ball__wrap')
+    ballWrap.style.width = '60px'
+    ballWrap.style.height = '60px'
+    ballWrap.style.position = 'absolute'
+    fieldTopCenter = field.clientHeight / 2
+    fieldLeftCenter = field.clientWidth / 2
+    ballWrap.style.top = fieldTopCenter - (ballWrap.offsetHeight / 2) + 'px'
+    ballWrap.style.left = fieldLeftCenter - (ballWrap.offsetWidth / 2) + 'px' 
+</script>
+</body>
+</html>
