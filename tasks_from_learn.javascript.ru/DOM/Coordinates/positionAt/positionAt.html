@@ -1,4 +1,6 @@
 <!-- https://learn.javascript.ru/task/position-at -->
+<!-- https://learn.javascript.ru/task/position-at-absolute -->
+<!-- https://learn.javascript.ru/task/position-inside-absolute -->
 <!DOCTYPE HTML>
 <html>
 
@@ -33,27 +35,23 @@
      *
      * Оба элемента elem и anchor должны присутствовать в документе
      */
-    function positionAt(anchor, position, elem) {
-      let coordAnc = anchor.getBoundingClientRect()
-      if(position === 'top') {
-          elem.style.top = coordAnc.top  - elem.offsetHeight + 'px'
-          elem.style.left = coordAnc.left + 'px'
-      }
-      if(position === 'bottom') {
-          elem.style.top = coordAnc.bottom + 'px'
-          elem.style.left = coordAnc.left + 'px'
-      }
-      if(position === 'right') {
-          elem.style.top = coordAnc.top + 'px'
-          elem.style.left = coordAnc.right + 'px'
-      }
-      console.log(coordAnc)
-      console.log(elem)
+    // function positionAt(anchor, position, elem) {
+    //   let coordAnc = anchor.getBoundingClientRect()
+    //   if(position === 'top') {
+    //       elem.style.top = coordAnc.top  - elem.offsetHeight + 'px'
+    //       elem.style.left = coordAnc.left + 'px'
+    //   }
+    //   if(position === 'bottom') {
+    //       elem.style.top = coordAnc.bottom + 'px'
+    //       elem.style.left = coordAnc.left + 'px'
+    //   }
+    //   if(position === 'right') {
+    //       elem.style.top = coordAnc.top + 'px'
+    //       elem.style.left = coordAnc.right + 'px'
+    //   }
+    // }
 
-      // ... ваш код ...
-    }
-
-    /**
+     /**
      * Показывает заметку с заданным содержимым на заданной позиции
      * относительно элемента anchor.
      */
@@ -69,9 +67,45 @@
     // test it
     let blockquote = document.querySelector('blockquote');
 
-    showNote(blockquote, "top", "note above");
-    showNote(blockquote, "right", "note at the right");
-    showNote(blockquote, "bottom", "note below");
+    // showNote(blockquote, "top", "note above");
+    // showNote(blockquote, "right", "note at the right");
+    // showNote(blockquote, "bottom", "note below"); 
+
+    // https://learn.javascript.ru/task/position-at-absolute
+    
+    let body = document.querySelector('body')
+    body.style.height = '2000px'
+    let note = document.querySelectorAll('.note')
+    for (const el of note) {
+      el.style.position = 'absolute'
+    }
+
+    // https://learn.javascript.ru/task/position-inside-absolute
+    
+    function positionAt(anchor, position, elem) {
+      let coordAnc = anchor.getBoundingClientRect()
+      if(position === 'top') {
+          elem.style.top = coordAnc.top  - elem.offsetHeight + 'px'
+          elem.style.left = coordAnc.left + 'px'
+      }
+      if(position === 'bottom') {
+          elem.style.top = coordAnc.bottom + 'px'
+          elem.style.left = coordAnc.left + 'px'
+      }
+      if(position === 'right') {
+          elem.style.top = coordAnc.top + 'px'
+          elem.style.left = coordAnc.right + 'px'
+      }
+      switch(position) {
+        case 'top-in':
+          console.log('function 2')
+          //  
+          elem.style.top = coordAnc.top + elem.offsetHeight + 'px'
+          elem.style.left = coordAnc.left + 'px'
+          break
+      }
+    }
+    showNote(blockquote, "top-in", "note top-in");
   </script>
 
 
