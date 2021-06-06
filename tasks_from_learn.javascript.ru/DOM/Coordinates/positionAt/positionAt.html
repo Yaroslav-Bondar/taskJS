@@ -55,6 +55,8 @@
      * Показывает заметку с заданным содержимым на заданной позиции
      * относительно элемента anchor.
      */
+// <!-- https://learn.javascript.ru/task/position-at -->
+
     function showNote(anchor, position, html) {
       let note = document.createElement('div');
       note.className = "note";
@@ -62,10 +64,22 @@
       document.body.append(note);
 
       positionAt(anchor, position, note);
-    }
-
-    // test it
+    }                                        
+    // blockquote
+    // let blockqoute = document.querySelector('blockqoute')
     let blockquote = document.querySelector('blockquote');
+    let body = document.querySelector('body')
+    
+    // let note = document.querySelectorAll('.note')
+    body.style.height = '2000px'
+    // console.log(blockquote)
+    blockquote.style.cssText = 'background: red;'
+    // console.log('note', note)
+    // for (const el of note) {
+    //   el.style.position = 'absolute'
+    // }
+    // test it
+    
 
     // showNote(blockquote, "top", "note above");
     // showNote(blockquote, "right", "note at the right");
@@ -73,12 +87,12 @@
 
     // https://learn.javascript.ru/task/position-at-absolute
     
-    let body = document.querySelector('body')
-    body.style.height = '2000px'
-    let note = document.querySelectorAll('.note')
-    for (const el of note) {
-      el.style.position = 'absolute'
-    }
+    // let body = document.querySelector('body')
+    // body.style.height = '2000px'
+    // let note = document.querySelectorAll('.note')
+    // for (const el of note) {
+    //   el.style.position = 'absolute'
+    // }
 
     // https://learn.javascript.ru/task/position-inside-absolute
     
@@ -99,13 +113,32 @@
       switch(position) {
         case 'top-in':
           console.log('function 2')
-          //  
-          elem.style.top = coordAnc.top + elem.offsetHeight + 'px'
+          // elem.style.top  = coordAnc.top + elem.offsetHeight + 'px'
+          elem.style.top = coordAnc.top + 'px'
           elem.style.left = coordAnc.left + 'px'
           break
+        case 'bottom-in':
+          elem.style.top = coordAnc.bottom - elem.offsetHeight + 'px'
+          elem.style.left = coordAnc.left + 'px'
+          console.log(coordAnc)
+          break
+        case 'right-in':
+          elem.style.top = coordAnc.top + 'px'
+          elem.style.left = coordAnc.right - elem.offsetWidth + 'px' 
       }
     }
+
     showNote(blockquote, "top-in", "note top-in");
+    showNote(blockquote, "top", "note top");
+    showNote(blockquote, "bottom-in", "note bottom-in");
+    showNote(blockquote, "bottom", "note bottom");
+    showNote(blockquote, "right-in", "note right-in");
+    showNote(blockquote, "right", "note right");
+    let note = document.getElementsByClassName('note')
+    for (const el of note) {
+      el.style.position = 'absolute'
+    }
+
   </script>
 
 

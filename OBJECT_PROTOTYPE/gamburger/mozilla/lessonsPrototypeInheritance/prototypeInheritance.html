@@ -96,13 +96,30 @@ function Teacher(first, last, age, gender, interests, subject) {
     this.subject = subject;
 }
 Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype.farewell = function() {
+  alert('Hi am ' + this.name.last)
+}
+Teacher.prototype.greeting = function() {
+  let prefix;
+
+  if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+    prefix = 'Mr.';
+  } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+    prefix = 'Ms.';
+  } else {
+    prefix = 'Mx.';
+  }
+  alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+};
 
 var teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+console.log('Teacher.prototype.constructor', Teacher.prototype.constructor)
 Object.defineProperty(Teacher.prototype, 'constructor', {
     value: Teacher,
     enumerable: false, // false, чтобы данное свойство не появлялось в цикле for in
     writable: true });
-console.log(teacher1.last)
+console.log('Teacher.prototype.constructor', Teacher.prototype.constructor)
+// console.log(teacher1.last)
 for (const key in teacher1) {
     // if (Object.hasOwnProperty.call(sq, key)) {
     //     const element = sq[key];
@@ -111,5 +128,8 @@ for (const key in teacher1) {
     if (teacher1.hasOwnProperty(key))
         console.log(key)
 }
+teacher1.farewell()
+// teacher1.bio()
+teacher1.greeting()
 </script>
 </html>
