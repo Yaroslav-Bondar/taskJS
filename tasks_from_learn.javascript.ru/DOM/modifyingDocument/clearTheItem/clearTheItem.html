@@ -1,0 +1,32 @@
+<!-- https://learn.javascript.ru/task/clear-elem -->
+<ol id="elem">
+    <li>Привет</li>
+    <li>Мир</li>
+</ol>
+
+  
+<script>
+let elem1 = document.getElementById('elem')
+console.log(elem)
+let btn = document.createElement('button')
+// btn.textContent = 'Clear'
+btn.innerHTML = 'Clear'
+btn.id = 'btn_clear'
+
+// elem.insertAdjacentElement('afterend', btn)
+elem.after(btn)  
+// or just --> elem.insertAdjacentHTML('afterend', '<button>Clear</button>')
+// console.log(document.getElementById('btn_clear'))
+// document.getElementById('btn-clear').addEventListener('click', clear)
+btn_clear.addEventListener('click', clear)
+// elem1 = document.getElementById('elem')
+function clear(elem) {
+    let li 
+    while(li = elem1.firstElementChild) {
+        elem1.removeChild(li)
+    }
+    /* ваш код */ 
+}
+
+// clear(elem); // очищает список
+</script>
