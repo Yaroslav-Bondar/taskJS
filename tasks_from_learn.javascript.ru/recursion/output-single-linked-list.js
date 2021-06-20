@@ -6,35 +6,19 @@ let list = {
         value: 3,
         next: {
           value: 4,
-          next: null
+          next: {
+            value: 5,
+            next: null      
+          }
         }
       }
     }
   };
  
-function getValue (list) {
-    if(null) {
-        console.log(true)
+  function getValue (list) {
+    console.log(list.value)
+    if(list.next) {
+        getValue(list.next)
     }
-    else {
-        console.log(false)
-    }
-    // else {
-    //     console.log()
-    // }
-    // console.log(Object.values(list.next)) 
-    for (const el in list) {
-        if(el === "next" && list[el] === null) {
-            return
-            // console.log(list[el])
-        } else if(el === "value")
-            console.log(el)
-        else {
-            for (const key of el) {
-                getValue(key)    
-            }
-        }
-    }
-    // getValue(list)  
 }
 getValue(list)
