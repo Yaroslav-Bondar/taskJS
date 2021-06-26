@@ -1,4 +1,4 @@
-// https://learn.javascript.ru/task/factorial
+//  
 
 function factorial (n) {
     if(n == 1) {

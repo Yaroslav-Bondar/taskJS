@@ -42,7 +42,10 @@
   <script>
     let data = {
       "Рыбы": {
-        "форель": {},
+        "форель": {
+          red: {},
+          blue: {}
+        },
         "лосось": {}
       },
 
@@ -57,68 +60,27 @@
         }
       }
     };
-    // for (const el in data) {
-    //   console.log(el)
-    // }
-    console.log(Object.values(data.Рыбы.форель).length)
-    console.log(Object.values(data).length)
-
-    function createTree(container, data) {
-        
-        if (Object.values(data).length == 0) {
-          // console.log(key)
-          return 
-        }
-        else {
-          for (const key in data) {
-            console.log(key)
-        }
-        createTree(container, data)
-      }
-      // if(Object.values(data).length === 0) {
-      //   console.log(Object.keys(data))
-      //   return Object.keys(data)
-      // }
-      // else {
-      //   for (const key in data) {
-      //     console.log(key)
-      //     // createTree(container, key)
-      //     // return key  
-      //   }
-      }
-
-      // for (const key in data) {
-      //   // if(Object.keys(key).length === 0) {
-      //   //   console.log(key)
-      //   // }
-      //   if(Object.values(key).length === 0) {
-      //     console.log(key)
-      //     return key
-      //   }
-      //   else {
-      //     createTree(container, data)
-      //   }  
-      // }
+    function getTree(container, data) {
+      container.append(createTree(data)) 
+    }
+    function createTree(data) {
+      if (Object.keys(data).length == 0) return 
       
-      /* ваш код */
-    // }
-    // console.log(empty.empty)
-    // console.log('Object.values(data)', Object.values(data.Рыбы.форель))
-    // console.log(Object.keys(data))
-
-    // key.noSuchProperty === undefined
-    // for(key in data) {
-    //     console.log(key)
-    //     if(Object.keys(key).length !== 0) {
-    //         for(key1 of key) {
-    //             console.log(key[key1])
-    //         }
-    //     }
-    //     // console.log(key)
-    //     // console.log(key.length)
-    // }
-    createTree(document.getElementById('tree'), data);
+      let ul = document.createElement('ul')
+        
+      for (const key in data) {
+        let li = document.createElement('li')
+        li.innerHTML = key
+      
+        let childUl = createTree(data[key])
+        if(childUl) {
+          li.append(childUl)
+        }
+        ul.append(li)
+      }
+      return ul
+    }
+    getTree(tree, data)
   </script>
-
 </body>
 </html>
