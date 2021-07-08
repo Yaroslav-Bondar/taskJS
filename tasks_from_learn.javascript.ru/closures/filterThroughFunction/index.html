@@ -1,0 +1,27 @@
+// https://learn.javascript.ru/task/filter-through-function
+<!doctype html>
+<script src="https://ru.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+
+  let arr = [1, 2, 3, 4, 5, 6, 7, 10];
+  
+  function inBetween(a, b) {
+    return function(x) {
+      return x >= a && x <= b
+    }
+  }
+  
+  function inArray(array) {
+    return function(x) {
+      return array.includes(x)
+      // if(array.includes(x)) return x
+    }
+    // ...your code...
+  }
+
+  console.log(arr.filter(inArray([1, 2, 7, 10])) ); // 1,2
+  // console.log(arr.filter(inBetween(1, 6)))
+</script>
+
+</html>
