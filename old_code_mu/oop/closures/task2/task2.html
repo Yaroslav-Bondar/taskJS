@@ -1,0 +1,58 @@
+<!-- 
+http://old.code.mu/tasks/javascript/advanced/prodvinutaya-rabota-s-funkciyami-javascript.html 
+8. Даны кнопки. Привяжите к каждой кнопке событие по клику, 
+которое будет считать количество нажатий по кнопке и выводить его в текст кнопки.
+Количество нажатий для каждой кнопки должно хранится в замыкании. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button data-btn="1" class="btn">0</button>
+    <button data-btn="2" class="btn">0</button>
+<script>
+// my version
+function count() {
+    let i = 1
+    return function () {
+        return i++
+    }
+}
+
+let btn1 = count()
+let btn2 = count()
+
+let body = document.querySelector('body')
+
+body.addEventListener('click', (e)=> {
+    let tar = e.target
+    if(!tar.classList.contains('btn')) return
+    if(tar.dataset.btn == '1') {
+        tar.innerHTML = btn1()
+    }
+    if(tar.dataset.btn == '2') {
+        tar.innerHTML = btn2()
+    }
+})
+// // my version
+// version decided
+// var f1 = function(){
+// 	var k = 1;
+// 	return function() {
+// 		this.innerHTML = k;
+// 		return k++;
+// 	}
+// }
+
+// var all_buttons = document.getElementsByTagName('button');
+// for (var i = 0; i < all_buttons.length; i++) {
+//     all_buttons[i].addEventListener('click', f1(this));
+// }
+// // version decided
+</script>    
+</body>
+</html>
