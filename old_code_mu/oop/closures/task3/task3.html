@@ -1,0 +1,33 @@
+<!-- http://old.code.mu/tasks/javascript/advanced/prodvinutaya-rabota-s-funkciyami-javascript.html -->
+<!--9. Дан массив цветов. Даны абзацы. По первому нажатию на абзац он должен 
+покраситься в первый цвет из массива, по второму нажатию - во второй и так далее. 
+Все абзацы работают независимо. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+</head>
+<body>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <script>
+        let colors = ['red', 'blue', 'green', 'yellow']
+        function getColor() {
+            let i = 0
+            return function() {
+                if(i >= colors.length) i = 0
+                this.style.background = colors[i]
+                i++    
+            }
+        }
+        let ps = document.getElementsByTagName('p')
+        for (const p of ps) {
+            p.addEventListener('click', getColor())
+        }
+    </script>
+</body>
+</html>
