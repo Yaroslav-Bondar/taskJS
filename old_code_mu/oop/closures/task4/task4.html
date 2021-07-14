@@ -1,0 +1,34 @@
+<!-- 	http://old.code.mu/tasks/javascript/advanced/prodvinutaya-rabota-s-funkciyami-javascript.html
+   10. Даны кнопки. Каждая кнопка по нажатию на нее выводить следующее число Фибоначчи. 
+    Кнопки работают независимо.
+    Решить через замыкания. Показать решение. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task4</title>
+</head>
+<body>
+    <button style="height: 50px"></button>
+    <button style="height: 50px"></button>
+    <script>
+        function fib() {
+            let tmp1 = 1
+            let tmp2 = 1
+            let res
+            return function() {
+                res = tmp1 + tmp2
+                tmp1 = tmp2
+                tmp2 = res
+                this.innerHTML = res
+            }
+        }
+        let btns = document.querySelectorAll('button')
+        for (const btn of btns) {
+            btn.addEventListener('click', fib(this))     
+        }
+    </script>
+</body>
+</html>
