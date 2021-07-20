@@ -1,0 +1,79 @@
+<!-- http://old.code.mu/tasks/javascript/advanced/prodvinutaya-rabota-s-funkciyami-javascript.html 
+    11. Даны инпуты. Сделайте так, чтобы каждый инпут хранил историю своих изменений. 
+Каждый инпут свою. Изменением считается событие onchange. История должна хранится в замыкании. 
+Над каждым инпутом должны быть стрелочки назад и вперед, с 
+помощью которых можно передвигаться по истории. Показать решение. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task5</title>
+</head>
+<body>
+    <div class="btn__wrap">
+        <span class="btn btn__prev">&#8592;</span>
+        <span class="btn btn__next">&#8594;</span>
+        <input type="text" value="type1">
+    </div>
+    
+    <div class="btn__wrap">
+        <span class="btn btn__prev">&#8592;</span>
+        <span class="btn btn__next">&#8594;</span>
+        <input type="text" value="type2">
+    </div>
+</body>
+<script>
+    function History() {
+        let his = []
+        let i = 0
+        let j = i
+        let thisInput
+
+        return function() {
+            let tar = event.target
+            // setting the initial value 
+            if(tar.closest('.btn__wrap') && i == 0) {
+                thisInput = tar.parentElement.children[2] 
+                his[i] = tar.parentElement.children[2].value
+                i++
+            }
+            // history record
+            if(tar.tagName == 'INPUT') {
+                if(event.type == 'change') {
+                    his[i] = thisInput.value
+                    j = i
+                    i++
+                }
+            }
+            // scrolling 
+            if(tar.classList.contains('btn')) {
+                if(tar.classList.contains('btn__next')) {
+                    j++
+                    if(j > his.length - 1)
+                        j = 0
+                    thisInput.value = his[j]
+                }
+                if(tar.classList.contains('btn__prev')) {
+                    j--
+                    if(j < 0)
+                        j = his.length - 1
+                    thisInput.value = his[j]
+                }
+            }
+        }
+    }
+    let wraps = document.querySelectorAll('.btn__wrap')
+
+    let mkHis = new History()
+    let mkHis1 = new History()
+
+    wraps[0].addEventListener('click', mkHis)
+    wraps[0].addEventListener('change', mkHis)
+
+    wraps[1].addEventListener('click', mkHis1)
+    wraps[1].addEventListener('change', mkHis1)
+</script>
+</html>

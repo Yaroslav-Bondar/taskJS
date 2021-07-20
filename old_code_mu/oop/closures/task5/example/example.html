@@ -1,0 +1,29 @@
+<!doctype html>
+<body>
+<button id="elem">Нажми меня</button>
+
+<script>
+  class Menu {
+    this.i
+    handleEvent(event) {
+      switch(event.type) {
+        case 'mousedown':
+          this.i++
+          console.log(i)
+
+          elem.innerHTML = "Нажата кнопка мыши";
+          break;
+        case 'mouseup':
+          this.i++
+          console.log(i)
+          elem.innerHTML += "...и отжата.";
+          break;
+      }
+    }
+  }
+
+  let menu = new Menu();
+  elem.addEventListener('mousedown', menu);
+  elem.addEventListener('mouseup', menu);
+</script>
+</body>
