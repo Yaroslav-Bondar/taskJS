@@ -1,0 +1,52 @@
+<!-- 
+https://learn.javascript.ru/task/animate-circle
+    Анимированный круг
+важность: 5
+
+Напишите функцию showCircle(cx, cy, radius), которая будет рисовать постепенно
+растущий круг.
+
+    cx,cy – координаты центра круга относительно окна браузера,
+    radius – радиус круга.
+
+Нажмите на кнопку ниже, чтобы увидеть как это должно выглядеть:
+
+В исходном коде уже указаны правильные CSS-стили круга, таким образам задача 
+заключается в том, чтобы сделать правильную анимацию. -->
+
+<head>
+    <meta charset="utf-8">
+    <style>
+      .circle {
+        /* margin-left, margin-top */
+        transition-property: width, height, top, left;
+        transition-duration: 2s;
+        position: fixed;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: red;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <button type="button" onclick="showCircle(400, 400, 200)">showCircle(400, 400, 200)</button>  
+    <script>
+        function showCircle(cx, cy, radius) {
+          let div = document.createElement('div')
+          div.style.width = 0
+          div.style.height = 0
+          div.style.left = `${cx - radius / 2}` + 'px'
+          div.style.top = `${cy - radius / 2}` + 'px'
+          div.className = 'circle'
+          document.body.append(div)
+
+          setTimeout(()=> {
+            div.style.width = radius * 2 + 'px'
+            div.style.height = radius * 2 + 'px'
+          }, 0)
+        }
+    </script>
+  </body>
+  </html>
+ 
