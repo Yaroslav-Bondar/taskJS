@@ -1,0 +1,87 @@
+<!--
+    https://learn.javascript.ru/task/animate-circle-callback 
+Анимация круга с помощью колбэка
+
+В задаче Анимированный круг находится код для анимации появления круга.
+
+Давайте представим, что теперь нам нужен не просто круг, а круг с сообщением внутри. 
+И сообщение должно появляться после анимации (когда круг достигнет своих размеров),
+ иначе это будет некрасиво.
+
+В том решении функция showCircle(cx, cy, radius) рисовала круг, но способа узнать,
+ что всё нарисовано, не было.
+
+Поэтому добавим в параметры колбэк: showCircle(cx, cy, radius, callback), который 
+выполним, когда анимация будет завершена. Функция callback будет добавлять в наш круг
+ <div> элемент с сообщением.
+
+Посмотрите пример:
+
+showCircle(150, 150, 100, div => {
+  div.classList.add('message-ball');
+  div.append("Hello, world!");
+});
+
+Возьмите за основу решение задачи Анимированный круг. -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .circle {
+      transition-property: width, height, margin-left, margin-top;
+      transition-duration: 2s;
+      position: fixed;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: red;
+      border-radius: 50%;
+    }
+    .message-ball {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: goldenrod;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button onclick="showCircle(150, 150, 100).then(div => {
+    div.classList.add('message-ball');
+    div.append('Hello, world!');
+  }, err => alert(err))">showCircle(150, 150, 100)</button>
+
+  <script>
+
+  function showCircle(cx, cy, radius) {
+    let div = document.createElement('div');
+    div.style.width = 0;
+    div.style.height = 0;
+    div.style.left = cx + 'px';
+    div.style.top = cy + 'px';
+    div.className = 'circle';
+    document.body.append(div);
+
+    setTimeout(() => {
+      div.style.width = radius * 2 + 'px';
+      div.style.height = radius * 2 + 'px';
+    }, 0);
+    return new Promise((resolve, reject)=> {
+      // if the code is executed without errors call - resolve, otherwise - reject
+      try{
+        div.addEventListener('transitionend', function handler() {
+            // call resolve upon completion of the animation
+            resolve(div)
+            div.removeEventListener('transitionend', handler);
+        })
+      }
+      catch(err) {
+        reject(err)
+      }
+    })
+  }
+  </script>
+</body>
+</html>
