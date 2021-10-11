@@ -29,6 +29,7 @@ let cat = new Cat('Vasya')
 
 // console.log(typeof Cat)
 function Leopard(name) {
+    // this.
     this.__proto__ = Cat.prototype
     this.getPet = function () {
         console.log('Pusssss')        
@@ -52,9 +53,9 @@ for (const key in leo) {
     // }
     console.log('LeoKey = ', key)
 }
-console.log(leo.__proto__.__proto__)
-cat.getPet()
-leo.getPet()
-console.log(cat.name)
-// console.log(leo.name)
+// console.log(leo.__proto__.__proto__)
+// cat.getPet()
+// leo.getPet()
+// console.log(cat.name)
+console.log(leo.name)
 // leo.sayMeow()
