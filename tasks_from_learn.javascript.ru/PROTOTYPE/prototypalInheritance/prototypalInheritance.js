@@ -59,3 +59,36 @@ for (const key in leo) {
 // console.log(cat.name)
 console.log(leo.name)
 // leo.sayMeow()
+
+function Cat(name) {
+    this.name = name
+}
+
+Cat.prototype.sayMeow = () => {
+    console.log('Meow!   Meow!   Meow!')
+    return 'Meow!   Meow!   Meow!';
+};
+
+Cat.prototype.getPet = () => {
+    console.log('Purrrrr')
+    //return 'Purrrrrr';
+};
+function Leopard(name) {
+	Cat.call(this, name);
+}
+Leopard.prototype.sayMeow = () => {
+    console.log('Roar!  Roar!   Roar!')
+    //return 'Meow!   Meow!   Meow!';
+}
+Leopard.prototype.getPet = function() {
+	Cat.prototype.getPet();
+    this.mood = 'happy';
+}
+Object.setPrototypeOf(Leopard.prototype, Cat.prototype);
+let cat = new Leopard('leo');
+console.log(cat.name)
+cat.sayMeow();
+console.info(cat.mood);
+cat.getPet();
+console.info(cat.mood);
+console.info(Leopard.prototype);
