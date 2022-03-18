@@ -1,0 +1,18 @@
+**js**
+recursion
+relative CSS units
+Symbol
+
+**css**
+1 flex property, flex grow/shrink
+2 em rem
+3 kaskadnost
+4 selectors
+
+**git**
+1 pull request
+2 merge
+
+
+****
+http protocol

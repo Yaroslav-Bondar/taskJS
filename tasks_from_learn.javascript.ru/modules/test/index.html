@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="div"></div>
+    <script  src='1.js' type="module"></script>
+    <script async src='./2.js'  type="module"></script>
+    <script async type="module">
+        console.log('id from module ', div);
+        import {admin} from './admin.js';
+        admin.name = "Vasya";
+        // console.log(admin.name); // Pete
+        </script>
+    <script src='./3.js' type="module"></script>
+    <script>
+        console.log('id from script ', div);
+        // console.log('script 1');
+        // console.log(this);
+        // console.log(button);
+        </script>
+    <script async>
+        // console.log('script 2');
+        // console.log(this);
+        // console.log(button);
+    </script>
+    <script async src="4.js"></script>
+    <button id="button"></button>
+</body>
+</html>
