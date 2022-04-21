@@ -40,14 +40,15 @@ function setObjR(arr) {
                 res[obj.color][obj.id] = obj;              
             }
         }
-    //     if(('id' in obj) && ('color' in obj)) 
-    //         console.log('obj', obj);
-    //         if(!(obj.color in res)) {
-    //         // check same id     
-    //         } else if(!(obj.id in res[obj.color])) {
-    //             res[obj.color][obj.id] = obj;              
-    //         }
-    //     }
+        // without checking same id
+        // if(('id' in obj) && ('color' in obj)) {
+        //     console.log('obj', obj);
+        //     if(!(obj.color in res)) {
+        //     // check same id     
+        //     } else if(!(obj.id in res[obj.color])) {
+        //         res[obj.color][obj.id] = obj;              
+        //     }
+        // }
         return res;
     }, {});
     console.log(resObj);
