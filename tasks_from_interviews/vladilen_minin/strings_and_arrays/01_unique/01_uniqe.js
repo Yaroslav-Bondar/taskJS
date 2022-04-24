@@ -8,20 +8,11 @@
 
 // **Output**: Boolean
 
-// function isUnique(string) {
-// 	// todo
-// }
-
-// console.log(isUnique('abcdef')) // -> true
-// console.log(isUnique('1234567')) // -> true
-// console.log(isUnique('abcABC')) // -> true
-// console.log(isUnique('abcadef')) // -> false
-
 function isUnique(str) {
     for(let i = 0; i < str.length; i++) {
-        console.log(str[i]);
+        // console.log(str[i]);
         for(let j = i+1; j < str.length; j++) {
-            console.log(str[j]);
+            // console.log(str[j]);
             if(str[i] == str[j]) return false;
         }
     }
