@@ -1,0 +1,17 @@
+### Повернута ли строка?
+
+Напишите функцию, которая принимает 2 строки. Верните `true` если 
+строки являются перевернутым вариантом друг друга (см. пример). 
+Иначе верните `false`.
+
+**Input**: String, String
+
+**Output**: Boolean
+
+function isStringRotated(source, test) {
+  // todo
+}
+
+console.log(isStringRotated('javascript', 'scriptjava')) // -> true
+console.log(isStringRotated('javascript', 'iptjavascr')) // -> true
+console.log(isStringRotated('javascript', 'java')) // -> false
