@@ -13,17 +13,17 @@ function fib(n) {
     }
     return res
 }
-// console.log(fib(77))
-// console.log(fib(3))
-
-// recursion
-function fib(n) {
-    if (n == 2) return
-    res = tmp1 + tmp2
-    tmp1 = tmp2
-    tmp2 = res
-    fib(n - 1)
-    return res
-    
-}
 console.log(fib(77))
+
+// recursion. not verified !!!
+// function fib(n) {
+//     if (n == 2) return
+//     res = tmp1 + tmp2
+//     tmp1 = tmp2
+//     tmp2 = res
+//     fib(n - 1)
+//     return res
+    
+// }
+console.log(fib(3));
+console.log(fib(77));
