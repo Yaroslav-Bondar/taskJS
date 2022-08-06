@@ -1,6 +1,7 @@
 // task : write a findMissingLetter function that 
 // takes an array of characters alphabetically, and returns the missing letter.
 // decision by source : https://telegra.ph/Answer-07-19-6
+// my solution : https://github.com/Yaroslav-Bondar/taskJS/commit/3f7cde416a92604b3a695ec302db91a7147e4e77
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const findMissingLetter = (arr) => {
