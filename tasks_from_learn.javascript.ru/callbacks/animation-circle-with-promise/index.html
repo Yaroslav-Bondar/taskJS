@@ -47,7 +47,6 @@ showCircle(150, 150, 100, div => {
 </head>
 
 <body>
-
   <button onclick="showCircle(150, 150, 100).then(div => {
     div.classList.add('message-ball');
     div.append('Hello, world!');
@@ -73,12 +72,15 @@ showCircle(150, 150, 100, div => {
       try{
         div.addEventListener('transitionend', function handler() {
             // call resolve upon completion of the animation
-            resolve(div)
+            console.log('transitionend', event);
+            resolve(div);
             div.removeEventListener('transitionend', handler);
         })
       }
       catch(err) {
         reject(err)
+        // or 
+        // throw err;
       }
     })
   }
