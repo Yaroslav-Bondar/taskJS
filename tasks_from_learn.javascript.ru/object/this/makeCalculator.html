@@ -17,6 +17,21 @@ let calculator = {
         return this.a * this.b
     }
 };
+// or
+let calculator2 = {
+	read() {
+    	this.a = +prompt('input a:', 0);
+        this.b = +prompt('input b:', 0);
+    },
+    sum() {
+    	return this.a + this.b;
+    },
+	mul: function() {
+    	console.log(this)
+    	return this.a * this.b;
+    }
+};
+
 calculator.read();
 alert( calculator.sum() );
 alert( calculator.mul() );
