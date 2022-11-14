@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background-color: #333;
+      /* height: 2000px; */
+      /* добавим body прокрутку, подсказка должна работать и с прокруткой */
+    }
+
+    .tooltip {
+      /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
+      position: fixed;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body id="body">
+
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+  <button data-tooltip="эта подсказка должна быть длиннее, чем элемент">Короткая кнопка</button>
+  <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+  <button data-tooltip="">Ещё кнопка</button>
+
+
+  <p>Прокрутите страницу, чтобы кнопки оказались у верхнего края, а затем проверьте правильно ли выводятся подсказки.</p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sequi labore cumque praesentium inventore illo voluptas commodi, suscipit, veniam libero qui aut. 
+    Possimus, debitis numquam? Quaerat aliquam pariatur possimus quod?
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sequi labore cumque praesentium inventore illo voluptas commodi, suscipit, veniam libero qui aut. 
+    Possimus, debitis numquam? Quaerat aliquam pariatur possimus quod?
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sequi labore cumque praesentium inventore illo voluptas commodi, suscipit, veniam libero qui aut. 
+    Possimus, debitis numquam? Quaerat aliquam pariatur possimus quod?
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sequi labore cumque praesentium inventore illo voluptas commodi, suscipit, veniam libero qui aut. 
+    Possimus, debitis numquam? Quaerat aliquam pariatur possimus quod?
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sequi labore cumque praesentium inventore illo voluptas commodi, suscipit, veniam libero qui aut. 
+    Possimus, debitis numquam? Quaerat aliquam pariatur possimus quod?
+  </p>
+  <script>
+      document.addEventListener('mouseover', tooltipHandler);
+      document.addEventListener('mouseout', tooltipHandler);
+      let tooltip = null;
+      
+      function tooltipHandler(e) {
+        const message = e.target.getAttribute('data-tooltip');
+        if(!message) return; // if it is not a tooltip or the data-tooltip attribute is an empty string
+        if(e.type == 'mouseover') {
+          console.log('e.type', e.type);
+          if(!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+            console.log('tooltip is created...');
+          }
+          const coords = e.target.getBoundingClientRect();
+          // console.log('coords.top', coords.top);
+          // console.log('e.target.offsetTop', e.target.offsetTop);
+          // console.log('window.pageYOffset', window.pageYOffset);
+          // console.log('tooltip.offsetHeight', tooltip.offsetHeight);
+          console.log('e.target.offsetParent', e.target.offsetParent);
+          // tooltip.textContent = message;
+          // tooltip.innerText = message;
+
+          tooltip.innerHTML = message;
+          body.append(tooltip); 
+          tooltip.style.top = coords.top - tooltip.offsetHeight - 5 + 'px';
+          // console.log('I am tooltip');  
+        } else if(e.type == 'mouseout') {
+
+          console.log('e.type', e.type);
+          tooltip.remove();
+        }
+      }
+
+    // ...ваш код...
+  </script>
+
+</body>
+</html>
